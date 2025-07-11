@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mines AI Strategy Planner</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #f0f0f0;
+      padding: 20px;
+    }
+    h1 {
+      color: #00ff88;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    label, select, input {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .results {
+      background: #222;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mines Strategy AI Helper</h1>
+
+  <div class="section">
+    <label for="mineCount">Choose Mine Count:</label>
+    <select id="mineCount">
+      <option value="1">1 Mine (Very Low Risk)</option>
+      <option value="3" selected>3 Mines (Low Risk)</option>
+      <option value="5">5 Mines (Medium Risk)</option>
+      <option value="10">10 Mines (High Risk)</option>
+    </select>
+  </div>
+
+  <div class="section">
+    <label for="clicks">How many safe clicks attempted so far?</label>
+    <input type="number" id="clicks" value="0" min="0" max="25" />
+  </div>
+
+  <div class="section">
+    <button onclick="calculateStrategy()">Check Safe Probability</button>
+    <div class="results" id="resultBox"></div>
+  </div>
+
+  <script>
+    function calculateStrategy() {
+      const mineCount = parseInt(document.getElementById("mineCount").value);
+      const safeClicked = parseInt(document.getElementById("clicks").value);
+      const totalTiles = 25;
+      const remainingTiles = totalTiles - safeClicked;
+      const safeTiles = totalTiles - mineCount;
+      const remainingSafe = safeTiles - safeClicked;
+      const probability = (remainingSafe / remainingTiles) * 100;
+
+      let cashoutAdvice = "";
+      if (probability > 90) cashoutAdvice = "💡 Keep going – very safe!";
+      else if (probability > 75) cashoutAdvice = "✅ Good chance – but watch your pattern.";
+      else if (probability > 50) cashoutAdvice = "⚠️ Getting risky. Consider cashing out soon.";
+      else cashoutAdvice = "❌ High risk! Cash out now if possible.";
+
+      document.getElementById("resultBox").innerHTML = `
+        <strong>Safe Tile Probability:</strong> ${probability.toFixed(2)}%<br />
+        <strong>Advice:</strong> ${cashoutAdvice}
+      `;
+    }
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mines AI Strategy Planner</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #f0f0f0;
+      padding: 20px;
+    }
+    h1 {
+      color: #00ff88;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    label, select, input {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .results {
+      background: #222;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mines Strategy AI Helper</h1>
+
+  <div class="section">
+    <label for="mineCount">Choose Mine Count:</label>
+    <select id="mineCount">
+      <option value="1">1 Mine (Very Low Risk)</option>
+      <option value="3" selected>3 Mines (Low Risk)</option>
+      <option value="5">5 Mines (Medium Risk)</option>
+      <option value="10">10 Mines (High Risk)</option>
+    </select>
+  </div>
+
+  <div class="section">
+    <label for="clicks">How many safe clicks attempted so far?</label>
+    <input type="number" id="clicks" value="0" min="0" max="25" />
+  </div>
+
+  <div class="section">
+    <button onclick="calculateStrategy()">Check Safe Probability</button>
+    <div class="results" id="resultBox"></div>
+  </div>
+
+  <script>
+    function calculateStrategy() {
+      const mineCount = parseInt(document.getElementById("mineCount").value);
+      const safeClicked = parseInt(document.getElementById("clicks").value);
+      const totalTiles = 25;
+      const remainingTiles = totalTiles - safeClicked;
+      const safeTiles = totalTiles - mineCount;
+      const remainingSafe = safeTiles - safeClicked;
+      const probability = (remainingSafe / remainingTiles) * 100;
+
+      let cashoutAdvice = "";
+      if (probability > 90) cashoutAdvice = "💡 Keep going – very safe!";
+      else if (probability > 75) cashoutAdvice = "✅ Good chance – but watch your pattern.";
+      else if (probability > 50) cashoutAdvice = "⚠️ Getting risky. Consider cashing out soon.";
+      else cashoutAdvice = "❌ High risk! Cash out now if possible.";
+
+      document.getElementById("resultBox").innerHTML = `
+        <strong>Safe Tile Probability:</strong> ${probability.toFixed(2)}%<br />
+        <strong>Advice:</strong> ${cashoutAdvice}
+      `;
+    }
+  </script>
+</body>
+</html>
