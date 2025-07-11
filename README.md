@@ -1,2 +1,2 @@
-# Mines-strategy-
+# index.html
 To help me play mines 
